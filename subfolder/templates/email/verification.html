@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width:100%;
+        }
+        .company-logo{
+            width: 100%;
+        }
+
+        .company-logo img{
+            width: 12rem;
+        }
+        .content .otp{
+            font-size:2rem;
+            margin:1.3rem 0;
+            text-align:center;
+            font-weight:600;
+            background-color: #f0f0f0;
+            padding:12px 0;
+        }
+        .content a button{
+            cursor:pointer;
+            background-color: rgb(135, 135, 236);
+            border:none;
+            box-shadow:0 10px 10px black;
+            border-radius:10px;
+            font-weight:600;
+            padding:10px 20px;
+        }
+
+        .content a button:hover{    
+            background-color:rgb(35, 35, 177);
+        }
+          .content a button:active{
+            background-color:rgb(35, 35, 100);
+        }
+        .content a {
+            text-decoration:none;
+            color:black;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="company-logo">
+        <img src="https://magnific.com" alt="Blog Logo">
+    </div>
+    <div class="content">
+        <h3>Hello Mr/Mrs {{first_name}}</h3>
+
+        <p>Welcome to our Website!!,pls verify your email using the link below and the otp below</p>
+
+        <p class="otp">{{otp}}</p>
+
+        <a href="{{verificaton_link}}">
+               <button>Verify email</button>
+        </a>
+        <p>Do have a wonderful day....</p>
+     
+    </div>
+   
+
+</body>
+</html>
