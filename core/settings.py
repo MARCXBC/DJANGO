@@ -93,6 +93,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://blog-learning-eta.vercel.app",
+    "https://vercel.app",
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
@@ -200,6 +201,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Add this at the absolute bottom of settings.py
+# Add this at the absolute bottom of settings.py
 CSRF_TRUSTED_ORIGINS = [
-    "bloglearning-production.up.railway.app",
+    "http://localhost:5173",
+    "https://blog-learning-eta.vercel.app",
+    "https://bloglearning-production.up.railway.app",
 ]
+
