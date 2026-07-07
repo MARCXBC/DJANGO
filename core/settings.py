@@ -38,7 +38,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     # "127.0.0.1",
     # "localhost",
-    "+"
+    "*"
 ]
 
 
@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://blog-learning-eta.vercel.app/",
+    "https://blog-learning-eta.vercel.app",
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
@@ -195,12 +195,11 @@ STATICFILES_STORAGE = (
 )
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Add this at the absolute bottom of settings.py
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "bloglearning-production.up.railway.app",
 ]
