@@ -92,38 +92,26 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+import dj_database_url
+import os
 
-DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'blog',
-    #     'USER': 'root',
-    #     'HOST': 'localhost',
-    #     'PASSWORD': 'marcus101',
-    # }
-    'default':{
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'HOST': 'localhost',\
-        'PORT': os.getenv('DB_PORT'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-
-        
-
-       
+if os.getenv("DATABASE_URL"):
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.getenv("DATABASE_URL")
+        )
     }
-}
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "marcusatoyebirash@gmail.com"
-EMAIL_HOST_PASSWORD = "ovcy xgcq ecbm ibit"
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DB_NAME"),
+            "USER": os.getenv("DB_USER"),
+            "PASSWORD": os.getenv("DB_PASSWORD"),
+            "HOST": os.getenv("DB_HOST"),
+            "PORT": os.getenv("DB_PORT"),
+        }
+    }
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
@@ -174,11 +162,19 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+STORAGES={
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Add this at the absolute bottom of settings.py
 CSRF_TRUSTED_ORIGINS = [
