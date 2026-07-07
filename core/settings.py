@@ -197,6 +197,8 @@ STATICFILES_STORAGE = (
     "whitenoise.storage.CompressedManifestStaticFilesStorage"
 )
 
+# Production storage update.
+
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
