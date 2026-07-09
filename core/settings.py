@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 import os
 from dotenv import load_dotenv
 import dj_database_url
+import cloudinary
 
 load_dotenv()
 
@@ -33,14 +34,14 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("SECRET_KEY")
 
 ALLOWED_HOSTS = [
     # "127.0.0.1",
     # "localhost",
     "*"
 ]
-
+ 
 
 
 # Application definition
@@ -52,17 +53,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
     'subfolder',
     'rest_framework',
     'blog',
     'corsheaders',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -90,10 +92,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://django-production-ad69.up.railway.app/",
+]
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://blog-learning-eta.vercel.app",
-    "https://vercel.app",
 ]
 
 # CORS_ALLOW_ALL_ORIGINS = True
