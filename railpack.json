@@ -1,0 +1,6 @@
+{
+  "$schema": "https://railpack.com",
+  "deploy": {
+    "startCommand": "gunicorn core.wsgi:application"
+  }
+}
