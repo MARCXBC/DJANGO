@@ -92,7 +92,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://django-production-ad69.up.railway.app/",
+    "https://django-production-ad69.up.railway.app",
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -214,9 +214,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Add this at the absolute bottom of settings.py
 # Add this at the absolute bottom of settings.py
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "https://blog-learning-eta.vercel.app",
-    "https://bloglearning-production.up.railway.app",
-]
 
