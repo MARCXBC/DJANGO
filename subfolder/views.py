@@ -124,31 +124,30 @@ def verify_user(request):
 
     return Response({"message": "Signup successful"}, status=status.HTTP_200_OK)
 
-# FIX 1: Linked the CSRF Exemption bypass rule to your lecturer's real login view endpoint function
-@csrf_exempt
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login(request):
-     email = request.data.get("email")
-     password = request.data.get("password")
+    email = request.data.get("email")
+    password = request.data.get("password")
 
-     user = authenticate(
-          email=email,
-          password=password
-     )   
+    user = authenticate(
+        email=email,
+        password=password
+    )   
 
-     if user is None:
-         return Response({"message": "Invalid Email or Password"}, status=status.HTTP_400_BAD_REQUEST)
+    if user is None:
+        return Response({"message": "Invalid Email or Password"}, status=status.HTTP_400_BAD_REQUEST)
+
+    if not user.is_verified:
+        return Response({"message": "Verify your email first"}, status=status.HTTP_400_BAD_REQUEST)
     
-     if not user.is_verified:
-         return Response({"message": "Verify your email first"}, status=status.HTTP_400_BAD_REQUEST)
-     
-     refresh = RefreshToken.for_user(user)
+    refresh = RefreshToken.for_user(user)
 
-     return Response({
-          "refresh": str(refresh),
-          "access": str(refresh.access_token)
-     })
+    return Response({
+        "refresh": str(refresh),
+        "access": str(refresh.access_token)
+    })
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
